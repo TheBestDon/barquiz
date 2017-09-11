@@ -9,7 +9,8 @@
     },
     "globals": {
       //place settings for globals here, such as
-      "exampleGlobalVariable": true
+      "exampleGlobalVariable": true,
+      "Promise": true
     },
     "rules": {
       //enable ESLint rules, such as
