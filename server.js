@@ -1,7 +1,6 @@
 // @flow
 
 import express from "express";
-import favicon from "serve-favicon";
 import bodyParser from "body-parser";
 import path from "path";
 import sassMiddleware from "node-sass-middleware";
@@ -11,7 +10,6 @@ import config from "./config";
 require("./server/models").connect(config.dbUri);
 
 const app = express();
-app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(bodyParser.json());
 
 app.use(

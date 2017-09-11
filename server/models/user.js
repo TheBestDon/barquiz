@@ -1,18 +1,43 @@
 // @flow
 
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from "mongoose";
+import validator from "validator";
+import jwt from "jsonwebtoken";
+import _ from "lodash";
+import bcrypt from "bcryptjs";
 
 // define the User model schema
 const UserSchema = new mongoose.Schema({
   email: {
     type: String,
-    index: { unique: true }
+    required: true,
+    trim: true,
+    minlength: 1,
+    unique: true,
+    validate: {
+      isAsync: true,
+      validator: validator.isEmail,
+      message: "{VALUE} is not a valid email"
+    }
   },
-  password: String,
-  name: String
+  password: {
+    type: String,
+    required: true,
+    minlength: 6
+  },
+  tokens: [
+    {
+      access: {
+        type: String,
+        required: true
+      },
+      token: {
+        type: String,
+        required: true
+      }
+    }
+  ]
 });
-
 /**
  * Compare the passed password with the value in the database. A model method.
  *
