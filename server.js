@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import path from "path";
 import sassMiddleware from "node-sass-middleware";
 import passport from "passport";
-import config from "./config";
+import config from "config";
 
 require("./server/models").connect(config.dbUri);
 

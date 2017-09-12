@@ -1,8 +1,8 @@
 // @flow
 
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 const User = require("mongoose").model("User");
-import config from "../../config";
+import config from "config";
 
 /**
  *  The Auth Checker middleware function.

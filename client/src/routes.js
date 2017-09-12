@@ -1,10 +1,10 @@
 // @flow
 
-import Base from "./components/Base";
-import HomePage from "./components/HomePage";
-import DashboardPage from "./containers/DashboardPage";
-import LoginPage from "./containers/LoginPage";
-import SignUpPage from "./containers/SignUpPage";
+import Base from "Base";
+import HomePage from "HomePage";
+import DashboardPage from "DashboardPage";
+import LoginPage from "LoginPage";
+import SignUpPage from "SignUpPage";
 import Auth from "./modules/Auth";
 
 const routes = {

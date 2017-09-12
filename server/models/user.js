@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 import validator from "validator";
 import jwt from "jsonwebtoken";
 import _ from "lodash";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
+import config from "config";
 
 var UserSchema = new mongoose.Schema({
   email: {
@@ -20,7 +21,7 @@ var UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 6
+    minlength: 8
   },
   tokens: [
     {
@@ -47,7 +48,7 @@ UserSchema.methods.generateAuthToken = function() {
   var user = this;
   var access = "auth";
   var token = jwt
-    .sign({ _id: user._id.toHexString(), access }, "abc123")
+    .sign({ _id: user._id.toHexString(), access }, config.jwtSecret)
     .toString();
 
   user.tokens.push({ access, token });
@@ -72,7 +73,7 @@ UserSchema.statics.findByToken = function(token) {
   var decoded;
 
   try {
-    decoded = jwt.verify(token, "abc123");
+    decoded = jwt.verify(token, config.jwtSecret);
   } catch (e) {
     return Promise.reject();
   }
@@ -84,27 +85,34 @@ UserSchema.statics.findByToken = function(token) {
   });
 };
 
-UserSchema.statics.findByCredentials = function(email, password) {
-  var User = this;
-
-  return User.findOne({ email }).then(user => {
-    if (!user) {
-      return Promise.reject();
-    }
-
-    return new Promise((resolve, reject) => {
-      bcrypt.compare(password, user.password, (err, res) => {
-        if (res) {
-          resolve(user);
-        } else {
-          reject();
-        }
-      });
-    });
-  });
+UserSchema.methods.comparePassword = function comparePassword(
+  password,
+  callback
+) {
+  bcrypt.compare(password, this.password, callback);
 };
 
-UserSchema.pre("save", function(next) {
+// UserSchema.statics.findByCredentials = function(email, password) {
+//   var User = this;
+
+//   return User.findOne({ email }).then(user => {
+//     if (!user) {
+//       return Promise.reject();
+//     }
+
+//     return new Promise((resolve, reject) => {
+//       bcrypt.compare(password, user.password, (err, res) => {
+//         if (res) {
+//           resolve(user);
+//         } else {
+//           reject();
+//         }
+//       });
+//     });
+//   });
+// };
+
+UserSchema.pre("save", function saveHook(next) {
   var user = this;
 
   if (user.isModified("password")) {

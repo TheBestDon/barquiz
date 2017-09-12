@@ -5,12 +5,18 @@
         "alias": {
           "test": "./test",
           "underscore": "lodash",
+          "Base": "components/Base.jsx",
+          "HomePage": "components/HomePage.jsx",
+          "DashboardPage": "containers/DashboardPage.jsx",
+          "LoginPage": "containers/LoginPage.jsx",
+          "SignUpPage": "containers/SignUpPage",
           "SignUpForm": "components/SignUpForm.jsx",
           "LoginForm": "components/LoginForm.jsx",
           "Dashboard": "components/Dashboard.jsx",
           "Header": "components/Header.jsx",
           "ResultsTable": "components/ResultsTable.jsx",
-          "OptionsPicker": "components/OptionsPicker.jsx"
+          "OptionsPicker": "components/OptionsPicker.jsx",
+          "config": "./config.js"
         }
       }]
     ],
