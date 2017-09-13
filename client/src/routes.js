@@ -2,9 +2,9 @@
 
 import Base from "Base";
 import HomePage from "HomePage";
-import DashboardPage from "DashboardPage";
-import LoginPage from "LoginPage";
-import SignUpPage from "SignUpPage";
+import DashboardContainer from "DashboardContainer";
+import LoginContainer from "LoginContainer";
+import SignUpContainer from "SignUpContainer";
 import Auth from "./modules/Auth";
 
 const routes = {
@@ -15,7 +15,7 @@ const routes = {
       path: "/",
       getComponent: (location, callback) => {
         if (Auth.isUserAuthenticated()) {
-          callback(null, DashboardPage);
+          callback(null, DashboardContainer);
         } else {
           callback(null, HomePage);
         }
@@ -24,12 +24,12 @@ const routes = {
 
     {
       path: "/login",
-      component: LoginPage
+      component: LoginContainer
     },
 
     {
       path: "/signup",
-      component: SignUpPage
+      component: SignUpContainer
     },
 
     {

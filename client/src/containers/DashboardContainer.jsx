@@ -4,7 +4,7 @@ import React from "react";
 import Auth from "../modules/Auth";
 import Dashboard from "Dashboard";
 
-class DashboardPage extends React.Component {
+class DashboardContainer extends React.Component {
   /**
    * Class constructor.
    */
@@ -44,4 +44,4 @@ class DashboardPage extends React.Component {
   }
 }
 
-export default DashboardPage;
+export default DashboardContainer;

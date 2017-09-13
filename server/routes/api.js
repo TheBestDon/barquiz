@@ -1,6 +1,7 @@
 // @flow
 
-const express = require("express");
+import express from "express";
+import data from "../testData";
 
 const router = new express.Router();
 
