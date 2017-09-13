@@ -2,14 +2,13 @@ import { MongoClient } from "mongodb";
 import assert from "assert";
 import config from "config";
 
-MongoClient.connect(config.mongodbUri, (err, db) => {
+MongoClient.connect(config.dbUri, (err, db) => {
   assert.equal(null, err);
 
   db
     .collection("seasons")
     .insertMany([
       {
-        id: 1,
         seasonName: "2017 summer - Tuesday",
         hostName: "Ina Aite",
         startDate: new Date("2017-06-01"),
@@ -22,7 +21,6 @@ I want to continue with the construction/building theme as well as the mind/brai
         gameIds: [101, 102]
       },
       {
-        id: 2,
         seasonName: "2017 summer - Wendsday",
         hostName: "Ina Aite",
         startDate: new Date("2017-06-02"),
@@ -33,7 +31,6 @@ Educating people about sustainable food production
         gameIds: []
       },
       {
-        id: 3,
         seasonName: "2017 summer - Thursday",
         hostName: "Ina Aite",
         startDate: new Date("2017-06-03"),

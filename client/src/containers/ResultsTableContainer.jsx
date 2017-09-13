@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ResultsTable from "ResultsTable";
-import data from "../../../server/testData.json";
 
 class ResultsTableContainer extends Component {
   constructor(props) {
